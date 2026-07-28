@@ -1,1 +1,1 @@
-print(CI/CD ishladi! 🎉)
+print(CI/CD ishladi! )
