@@ -1,0 +1,21 @@
+name: Minimal CI
+
+on:
+  push:
+    branches: [main]
+
+jobs:
+  run-script:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Kodni checkout qilish
+        uses: actions/checkout@v4
+
+      - name: Python o'rnatish
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: Skript ishga tushurishj
+        run: python main.py
+
