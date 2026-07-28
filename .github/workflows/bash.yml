@@ -1,0 +1,22 @@
+name: Bashcript CI
+
+on:
+  push:
+    branches: [main]
+
+
+jobs:
+  run-script:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Kodni checkout qilish
+        uses: actions/checkout@v4
+
+      - name: Script ga ishga tushurush huquqini berish
+        run: chmod +x script.sh
+
+      - name: Bash script ni ishga tushurish
+        run: ./script.sh
+
+      - name: Natijani ko'rish
+        run: cat natija.txt
