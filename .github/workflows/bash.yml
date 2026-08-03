@@ -4,19 +4,31 @@ on:
   push:
     branches: [main]
 
-
 jobs:
   run-script:
     runs-on: ubuntu-latest
     steps:
       - name: Kodni checkout qilish
         uses: actions/checkout@v4
-
       - name: Script ga ishga tushurush huquqini berish
         run: chmod +x script.sh
-
       - name: Bash script ni ishga tushurish
         run: ./script.sh
-
       - name: Natijani ko'rish
         run: cat natija.txt
+
+  deploy:
+    needs: run-script
+    runs-on: ubuntu-latest
+    steps:
+      - name: VPS ga SSH orqali ulanib deploy qilish
+        uses: appleboy/ssh-action@v1.0.3
+        with:
+          host: ${{ secrets.VPS_HOST }}
+          username: ${{ secrets.VPS_USER }}
+          key: ${{ secrets.VPS_SSH_KEY }}
+          script: |
+            cd ~/Test_CI-CD
+            git pull origin main
+            chmod +x script.sh
+            ./script.sh 
