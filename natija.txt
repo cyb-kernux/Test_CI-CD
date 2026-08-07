@@ -1,0 +1,2 @@
+CI/CD ishladi !
+File yaratildi: Mon Aug  3 05:24:02 +05 2026
